@@ -1,5 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://cekid5bn7q8ek"]
+[gd_scene load_steps=28 format=3 uid="uid://cekid5bn7q8ek"]
 
+[ext_resource type="Script" path="res://World.gd" id="1_56hkj"]
 [ext_resource type="Texture2D" uid="uid://btr7p2ganhlqg" path="res://icon.svg" id="1_akpbq"]
 [ext_resource type="Script" path="res://Cloth.gd" id="1_nxfey"]
 [ext_resource type="PackedScene" uid="uid://ch5w72cvpa6rl" path="res://Environment/SourceFiles/Mug_Meter.gltf" id="2_6atqw"]
@@ -70,6 +71,7 @@ shader_parameter/Slow = 5.0
 shader_parameter/Noise = SubResource("NoiseTexture2D_0yui3")
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_56hkj")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.383022, 0.321394, 0, 0.642788, 0.766044, -0.5, 0.663414, -0.55667, 0, 0, 0)
