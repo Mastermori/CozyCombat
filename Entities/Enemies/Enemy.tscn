@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmakgfx0ejjeg"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/Enemy.gd" id="1_63ka3"]
+[ext_resource type="Script" path="res://Entities/Enemies/HealthLabel.gd" id="2_dto7e"]
+[ext_resource type="Script" path="res://Hurtbox.gd" id="3_0qa6b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ijs5t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1ncu"]
+albedo_color = Color(0.619608, 0.12549, 0.12549, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lnmxr"]
+material = SubResource("StandardMaterial3D_h1ncu")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_btj4q"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_63ka3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ijs5t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_lnmxr")
+
+[node name="HealthLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11915, 0)
+billboard = 1
+text = "Error!"
+script = ExtResource("2_dto7e")
+target = NodePath("..")
+
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_0qa6b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape3D_btj4q")
