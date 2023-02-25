@@ -1,0 +1,122 @@
+[gd_scene load_steps=13 format=3 uid="uid://cekid5bn7q8ek"]
+
+[ext_resource type="Script" path="res://Cloth.gd" id="1_nxfey"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_apn4g"]
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5ld8p"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0e4cu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pc1o"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vij8h"]
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq58s"]
+cull_mode = 2
+albedo_color = Color(0.780392, 0.0941176, 0.0941176, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fd5ck"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vsjfp"]
+
+[sub_resource type="Sky" id="Sky_0qv3e"]
+sky_material = SubResource("ProceduralSkyMaterial_vsjfp")
+
+[sub_resource type="Environment" id="Environment_ibm7o"]
+background_mode = 2
+sky = SubResource("Sky_0qv3e")
+ambient_light_source = 3
+reflected_light_source = 2
+volumetric_fog_density = 0.1763
+volumetric_fog_albedo = Color(1, 0, 0.854902, 1)
+volumetric_fog_emission = Color(0.415686, 0, 0.941176, 1)
+volumetric_fog_emission_energy = 0.2
+volumetric_fog_ambient_inject = 16.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3uu3k"]
+dof_blur_far_distance = 22.45
+dof_blur_near_distance = 3.55
+
+[node name="World" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_apn4g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00328064, 0.0112609, -0.00151968)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5ld8p")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -0.000144695, -0.000352737, 0.000145915, 0.999994, 0.00346974, 0.000352234, -0.00346979, 0.999994, 5.03056, 0.627352, 0.0495601)
+mesh = SubResource("BoxMesh_0e4cu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
+shape = SubResource("BoxShape3D_1pc1o")
+
+[node name="Cloth" type="SoftBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99394, 0)
+mesh = SubResource("PlaneMesh_vij8h")
+surface_material_override/0 = SubResource("StandardMaterial3D_kq58s")
+simulation_precision = 100
+total_mass = 0.01
+linear_stiffness = 0.01
+damping_coefficient = 0.0
+pinned_points = [0, 8, 16, 24, 33, 4, 12, 20, 28, 32]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 8
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 16
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 24
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+attachments/4/point_index = 33
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3(0, 0, 0)
+attachments/5/point_index = 4
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3(0, 0, 0)
+attachments/6/point_index = 12
+attachments/6/spatial_attachment_path = NodePath("")
+attachments/6/offset = Vector3(0, 0, 0)
+attachments/7/point_index = 20
+attachments/7/spatial_attachment_path = NodePath("")
+attachments/7/offset = Vector3(0, 0, 0)
+attachments/8/point_index = 28
+attachments/8/spatial_attachment_path = NodePath("")
+attachments/8/offset = Vector3(0, 0, 0)
+attachments/9/point_index = 32
+attachments/9/spatial_attachment_path = NodePath("")
+attachments/9/offset = Vector3(0, 0, 0)
+script = ExtResource("1_nxfey")
+
+[node name="Wind" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.374611, 0.558245, -0.0672755)
+wind_force_magnitude = 0.025
+wind_source_path = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wind"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.509807, 0.481753, 0.493728)
+shape = SubResource("BoxShape3D_fd5ck")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999409, 0.0171579, 0.0297748, -0.0200225, 0.994912, 0.0987424, -0.0279291, -0.0992802, 0.994668, 0, 1.59963, 4.27744)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ibm7o")
+camera_attributes = SubResource("CameraAttributesPractical_3uu3k")
