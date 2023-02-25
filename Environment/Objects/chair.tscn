@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://btavo8nr5f5bj"]
+
+[ext_resource type="PackedScene" uid="uid://chlli4a35g1mg" path="res://Environment/SourceFiles/Chair.dae" id="1_d85vd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7i2l"]
+albedo_color = Color(0.647059, 0.384314, 0.219608, 1)
+roughness = 0.81
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75ee4"]
+albedo_color = Color(0.976471, 0.945098, 0.803922, 1)
+roughness = 0.39
+
+[node name="Chair" instance=ExtResource("1_d85vd")]
+
+[node name="polySurface6" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0228311, 0.0179945, -0.0650409)
+surface_material_override/0 = SubResource("StandardMaterial3D_x7i2l")
+surface_material_override/1 = SubResource("StandardMaterial3D_75ee4")

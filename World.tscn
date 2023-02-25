@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dl3uu5okary3x"]
+[gd_scene load_steps=20 format=3 uid="uid://dl3uu5okary3x"]
 
 [ext_resource type="Script" path="res://Cloth.gd" id="1_nxfey"]
 [ext_resource type="PackedScene" uid="uid://ch5w72cvpa6rl" path="res://Environment/SourceFiles/Mug_Meter.gltf" id="2_6atqw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dq7g776oohijw" path="res://Environment/Objects/pillow_80cm.tscn" id="5_ehdnc"]
 [ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="6_h2aas"]
 [ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="7_vtgnf"]
+[ext_resource type="PackedScene" uid="uid://btavo8nr5f5bj" path="res://Environment/Objects/chair.tscn" id="8_58wmr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_apn4g"]
 size = Vector2(100, 100)
@@ -147,3 +148,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131557, -0.209862, -0.02489
 
 [node name="Pillow_80CM2" parent="." instance=ExtResource("5_ehdnc")]
 transform = Transform3D(1, 0, 0, 0, 0.976616, -0.214991, 0, 0.214991, 0.976616, -10.3156, 0.440319, -0.547748)
+
+[node name="Chair" parent="." instance=ExtResource("8_58wmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.543, 0.411661, -0.48291)
