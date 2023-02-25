@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cekid5bn7q8ek"]
+[gd_scene load_steps=15 format=3 uid="uid://cekid5bn7q8ek"]
 
 [ext_resource type="Script" path="res://Cloth.gd" id="1_nxfey"]
 [ext_resource type="PackedScene" uid="uid://ch5w72cvpa6rl" path="res://Environment/Meshes/Mug_Meter.gltf" id="2_6atqw"]
+[ext_resource type="PackedScene" uid="uid://dtrhwxwmklu4" path="res://Environment/Meshes/Pillow_Square.gltf" id="3_teq55"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_apn4g"]
 size = Vector2(100, 100)
@@ -124,3 +125,6 @@ camera_attributes = SubResource("CameraAttributesPractical_3uu3k")
 
 [node name="Mug_Meter" parent="." instance=ExtResource("2_6atqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8018, 0.0112609, -0.0130687)
+
+[node name="Pillow_Square" parent="." instance=ExtResource("3_teq55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1585, 0.104868, 0.186522)
