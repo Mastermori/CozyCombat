@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cekid5bn7q8ek"]
+[gd_scene load_steps=14 format=3 uid="uid://cekid5bn7q8ek"]
 
 [ext_resource type="Script" path="res://Cloth.gd" id="1_nxfey"]
+[ext_resource type="PackedScene" uid="uid://ch5w72cvpa6rl" path="res://Environment/Meshes/Mug_Meter.gltf" id="2_6atqw"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_apn4g"]
 size = Vector2(100, 100)
@@ -120,3 +121,6 @@ transform = Transform3D(0.999409, 0.0171579, 0.0297748, -0.0200225, 0.994912, 0.
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ibm7o")
 camera_attributes = SubResource("CameraAttributesPractical_3uu3k")
+
+[node name="Mug_Meter" parent="." instance=ExtResource("2_6atqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8018, 0.0112609, -0.0130687)
