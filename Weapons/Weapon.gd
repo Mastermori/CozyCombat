@@ -9,3 +9,7 @@ func _ready() -> void:
 func set_active(value: bool) -> void:
 	$Hitbox.monitoring = value
 	active = value
+
+func hit_effect() -> void:
+	$FeatherParticles.restart()
+	$FeatherParticles.emitting = true

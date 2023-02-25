@@ -25,3 +25,4 @@ func _on_area_entered(area: Area3D) -> void:
 		var knockback_dir = knockback_source_node.global_position.direction_to(entity.global_position)
 #		knockback_dir.y = .2
 		entity.knockback(knockback_dir.normalized(), knockback_strength)
+		owner.hit_effect()
