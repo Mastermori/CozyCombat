@@ -1,16 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://cekid5bn7q8ek"]
+[gd_scene load_steps=27 format=3 uid="uid://cekid5bn7q8ek"]
 
 [ext_resource type="Texture2D" uid="uid://btr7p2ganhlqg" path="res://icon.svg" id="1_akpbq"]
 [ext_resource type="Script" path="res://Cloth.gd" id="1_nxfey"]
 [ext_resource type="PackedScene" uid="uid://ch5w72cvpa6rl" path="res://Environment/SourceFiles/Mug_Meter.gltf" id="2_6atqw"]
 [ext_resource type="PackedScene" uid="uid://dej4t0ulbq0bt" path="res://Environment/SourceFiles/Blanket_Square.dae" id="4_k4t0o"]
 [ext_resource type="PackedScene" uid="uid://cyd17mdcoc56n" path="res://Environment/Objects/pillow_40cm.tscn" id="4_ykv0j"]
-[ext_resource type="PackedScene" uid="uid://dq7g776oohijw" path="res://Environment/Objects/pillow_80cm.tscn" id="5_ehdnc"]
-[ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="6_h2aas"]
-[ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="7_vtgnf"]
 [ext_resource type="PackedScene" uid="uid://dq07351a64tkg" path="res://Entities/Player/Player.tscn" id="5_2rqw5"]
+[ext_resource type="PackedScene" uid="uid://dq7g776oohijw" path="res://Environment/Objects/pillow_80cm.tscn" id="5_ehdnc"]
 [ext_resource type="PackedScene" uid="uid://bmakgfx0ejjeg" path="res://Entities/Enemies/Enemy.tscn" id="6_6bdg3"]
+[ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="6_h2aas"]
 [ext_resource type="Shader" path="res://Static.gdshader" id="7_hpwi0"]
+[ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="7_vtgnf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7loji"]
 albedo_texture = ExtResource("1_akpbq")
