@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cekid5bn7q8ek"]
+[gd_scene load_steps=29 format=3 uid="uid://cekid5bn7q8ek"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_56hkj"]
 [ext_resource type="Texture2D" uid="uid://btr7p2ganhlqg" path="res://icon.svg" id="1_akpbq"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="6_h2aas"]
 [ext_resource type="Shader" path="res://Static.gdshader" id="7_hpwi0"]
 [ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="7_vtgnf"]
+[ext_resource type="PackedScene" uid="uid://wkfx5nlk1mxe" path="res://Environment/Objects/couch_cushion.tscn" id="13_am6ps"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7loji"]
 albedo_texture = ExtResource("1_akpbq")
@@ -165,16 +166,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9725, 0.0112607, 0.295854
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5939, 0.0692796, 0.347293)
 
 [node name="Pillow_80CM" parent="." instance=ExtResource("5_ehdnc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3981, 0.133269, 0.350731)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8307, 0.133269, 0.350731)
 
 [node name="Bed" parent="." instance=ExtResource("6_h2aas")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3283, 0, 0)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -10.3283, 0, 0)
 
 [node name="Mattress" parent="Bed" instance=ExtResource("7_vtgnf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131557, -0.209862, -0.0248905)
 
-[node name="Pillow_80CM2" parent="." instance=ExtResource("5_ehdnc")]
-transform = Transform3D(1, 0, 0, 0, 0.976616, -0.214991, 0, 0.214991, 0.976616, -10.3156, 0.440319, -0.547748)
+[node name="Pillow_80CM2" parent="Bed" instance=ExtResource("5_ehdnc")]
+transform = Transform3D(1, 0, 0, 0, 0.997709, -0.0676496, 0, 0.0676496, 0.997709, 0.0346127, 0.395875, -0.478305)
 
 [node name="Enemy" parent="." instance=ExtResource("6_6bdg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10771, 1.76012, -0.709987)
@@ -186,3 +187,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CouchCushion" parent="." instance=ExtResource("13_am6ps")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9258, 0.0112608, -2.81504)
