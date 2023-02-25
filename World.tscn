@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dl3uu5okary3x"]
+[gd_scene load_steps=15 format=3 uid="uid://cekid5bn7q8ek"]
 
+[ext_resource type="Texture2D" uid="uid://btr7p2ganhlqg" path="res://icon.svg" id="1_akpbq"]
 [ext_resource type="Script" path="res://Cloth.gd" id="1_nxfey"]
 [ext_resource type="PackedScene" uid="uid://ch5w72cvpa6rl" path="res://Environment/SourceFiles/Mug_Meter.gltf" id="2_6atqw"]
 [ext_resource type="PackedScene" uid="uid://dej4t0ulbq0bt" path="res://Environment/SourceFiles/Blanket_Square.dae" id="4_k4t0o"]
@@ -7,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://dq7g776oohijw" path="res://Environment/Objects/pillow_80cm.tscn" id="5_ehdnc"]
 [ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="6_h2aas"]
 [ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="7_vtgnf"]
+[ext_resource type="PackedScene" uid="uid://dq07351a64tkg" path="res://Entities/Player/Player.tscn" id="5_2rqw5"]
+[ext_resource type="PackedScene" uid="uid://bmakgfx0ejjeg" path="res://Entities/Enemies/Enemy.tscn" id="6_6bdg3"]
+[ext_resource type="Shader" path="res://Static.gdshader" id="7_hpwi0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7loji"]
+albedo_texture = ExtResource("1_akpbq")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_apn4g"]
 size = Vector2(100, 100)
@@ -50,9 +57,26 @@ volumetric_fog_ambient_inject = 16.0
 dof_blur_far_distance = 22.45
 dof_blur_near_distance = 3.55
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ujsqi"]
+frequency = 0.25
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0yui3"]
+noise = SubResource("FastNoiseLite_ujsqi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gn2tb"]
+shader = ExtResource("7_hpwi0")
+shader_parameter/Transparency = 5.0
+shader_parameter/Slow = 5.0
+shader_parameter/Noise = SubResource("NoiseTexture2D_0yui3")
+
 [node name="World" type="Node3D"]
 
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.383022, 0.321394, 0, 0.642788, 0.766044, -0.5, 0.663414, -0.55667, 0, 0, 0)
+shadow_enabled = true
+
 [node name="Ground" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_7loji")
 mesh = SubResource("PlaneMesh_apn4g")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
@@ -111,6 +135,11 @@ attachments/9/spatial_attachment_path = NodePath("")
 attachments/9/offset = Vector3(0, 0, 0)
 script = ExtResource("1_nxfey")
 
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("5_2rqw5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74431, 2.81888, -3.90801)
+
 [node name="Wind" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.374611, 0.558245, -0.0672755)
 wind_force_magnitude = 0.025
@@ -119,9 +148,6 @@ wind_source_path = NodePath("CollisionShape3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wind"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.509807, 0.481753, 0.493728)
 shape = SubResource("BoxShape3D_fd5ck")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.999409, 0.0171579, 0.0297748, -0.0200225, 0.994912, 0.0987424, -0.0279291, -0.0992802, 0.994668, 0, 1.59963, 4.27744)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ibm7o")
@@ -147,3 +173,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131557, -0.209862, -0.02489
 
 [node name="Pillow_80CM2" parent="." instance=ExtResource("5_ehdnc")]
 transform = Transform3D(1, 0, 0, 0, 0.976616, -0.214991, 0, 0.214991, 0.976616, -10.3156, 0.440319, -0.547748)
+
+[node name="Enemy" parent="." instance=ExtResource("6_6bdg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10771, 1.76012, -0.709987)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gn2tb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
