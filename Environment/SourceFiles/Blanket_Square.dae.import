@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cnmf1n14s382h"
-path="res://.godot/imported/Pillow_40CM.dae-3dd88e71e310b78e618d88f6ab3646ec.scn"
+uid="uid://dej4t0ulbq0bt"
+path="res://.godot/imported/Blanket_Square.dae-079499e7a9d0d38cc54e605387b53062.scn"
 
 [deps]
 
-source_file="res://Environment/Meshes/Pillow_40CM.dae"
-dest_files=["res://.godot/imported/Pillow_40CM.dae-3dd88e71e310b78e618d88f6ab3646ec.scn"]
+source_file="res://Environment/SourceFiles/Blanket_Square.dae"
+dest_files=["res://.godot/imported/Blanket_Square.dae-079499e7a9d0d38cc54e605387b53062.scn"]
 
 [params]
 

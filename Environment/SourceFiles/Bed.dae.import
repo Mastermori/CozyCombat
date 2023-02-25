@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dej4t0ulbq0bt"
-path="res://.godot/imported/Blanket_Square.dae-079c59af3c926244efe853184cb93d48.scn"
+uid="uid://byad0vy26bltw"
+path="res://.godot/imported/Bed.dae-e6823ce94f0d4f0526e92869bfa35d27.scn"
 
 [deps]
 
-source_file="res://Environment/Meshes/Blanket_Square.dae"
-dest_files=["res://.godot/imported/Blanket_Square.dae-079c59af3c926244efe853184cb93d48.scn"]
+source_file="res://Environment/SourceFiles/Bed.dae"
+dest_files=["res://.godot/imported/Bed.dae-e6823ce94f0d4f0526e92869bfa35d27.scn"]
 
 [params]
 

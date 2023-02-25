@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyd17mdcoc56n"]
+
+[ext_resource type="PackedScene" uid="uid://cnmf1n14s382h" path="res://Environment/SourceFiles/Pillow_40CM.dae" id="1_0wf26"]
+[ext_resource type="Material" uid="uid://cknwlib84x1fe" path="res://Environment/Materials/new_standard_material_3d.tres" id="1_ncetg"]
+
+[node name="Pillow_40CM" instance=ExtResource("1_0wf26")]
+
+[node name="Pillow_3KFBXASC058pCube1" parent="." index="0"]
+material_override = ExtResource("1_ncetg")

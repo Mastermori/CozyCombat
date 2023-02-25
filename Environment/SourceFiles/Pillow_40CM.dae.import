@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bauve1kdqclwq"
-path="res://.godot/imported/Pillow_80CM.dae-09686ccaed56e4bc0c07d506735013a4.scn"
+uid="uid://cnmf1n14s382h"
+path="res://.godot/imported/Pillow_40CM.dae-37816160f554a4d6579ea3b08213db09.scn"
 
 [deps]
 
-source_file="res://Environment/Meshes/Pillow_80CM.dae"
-dest_files=["res://.godot/imported/Pillow_80CM.dae-09686ccaed56e4bc0c07d506735013a4.scn"]
+source_file="res://Environment/SourceFiles/Pillow_40CM.dae"
+dest_files=["res://.godot/imported/Pillow_40CM.dae-37816160f554a4d6579ea3b08213db09.scn"]
 
 [params]
 

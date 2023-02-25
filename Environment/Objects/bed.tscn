@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh6xgmqts6mi6"]
+
+[ext_resource type="PackedScene" uid="uid://byad0vy26bltw" path="res://Environment/SourceFiles/Bed.dae" id="1_omx3f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4arm"]
+roughness = 0.51
+
+[node name="Bed" instance=ExtResource("1_omx3f")]
+
+[node name="pCube1" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_o4arm")

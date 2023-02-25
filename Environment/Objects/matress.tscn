@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://u8sujvshj643"]
+
+[ext_resource type="PackedScene" uid="uid://bis2geeblpjgq" path="res://Environment/SourceFiles/Mattress.dae" id="1_c4ry7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o77wg"]
+albedo_color = Color(0.498039, 0.713726, 1, 1)
+roughness = 0.7
+
+[node name="Mattress" instance=ExtResource("1_c4ry7")]
+
+[node name="pCube2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126839, 0.179297, 0.0248771)
+material_override = SubResource("StandardMaterial3D_o77wg")

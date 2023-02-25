@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1v4eclbuc4ue"]
+
+[ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="1_o6slo"]
+[ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="2_8cfkc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wq3qp"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -1, 0)
+mesh = SubResource("BoxMesh_wq3qp")
+
+[node name="Bed" parent="." instance=ExtResource("1_o6slo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30274, -0.50731, 2.05634)
+
+[node name="Mattress" parent="Bed" instance=ExtResource("2_8cfkc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135293, -0.221586, -0.0292182)

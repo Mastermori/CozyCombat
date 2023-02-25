@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ch5w72cvpa6rl"
-path="res://.godot/imported/Mug_Meter.gltf-04070ae351bdea79ae5f9866e5bfcdbc.scn"
+uid="uid://bauve1kdqclwq"
+path="res://.godot/imported/Pillow_80CM.dae-3c8a060334f32fb73f7b344cef2d0405.scn"
 
 [deps]
 
-source_file="res://Environment/Meshes/Mug_Meter.gltf"
-dest_files=["res://.godot/imported/Mug_Meter.gltf-04070ae351bdea79ae5f9866e5bfcdbc.scn"]
+source_file="res://Environment/SourceFiles/Pillow_80CM.dae"
+dest_files=["res://.godot/imported/Pillow_80CM.dae-3c8a060334f32fb73f7b344cef2d0405.scn"]
 
 [params]
 
