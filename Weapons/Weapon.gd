@@ -11,6 +11,8 @@ func set_active(value: bool) -> void:
 	active = value
 
 func hit_effect(entity: Entity) -> void:
+	$PillowPunch.play()
+	
 	var feather_particles = preload("res://Weapons/feather_particles.tscn").instantiate()
 	$ParticleContainer.add_child(feather_particles)
 	feather_particles.global_position = entity.global_position

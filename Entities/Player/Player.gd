@@ -13,7 +13,6 @@ var look_sensitivity: float = ProjectSettings.get_setting("player/look_sensitivi
 @onready var hands := $Hands
 @onready var right_hand: Hand = $Hands/RightHand
 @onready var camera: Camera3D = $Camera3D
-@onready var pillow_punch_audio = $pillow_punch
 
 
 func _ready():
@@ -55,7 +54,6 @@ func _input(event):
 		return
 	
 	if event.is_action_pressed("punch"):
-		pillow_punch_audio.play()
 		right_hand.punch()
 	
 	if event is InputEventMouseMotion:
@@ -67,7 +65,6 @@ func _input(event):
 func die():
 	print("You died!")
 	Engine.time_scale = .1
-
 
 func is_controlling() -> bool:
 	return Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
