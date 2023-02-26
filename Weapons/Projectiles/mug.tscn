@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://2q4xd48fxsgk"]
+
+[ext_resource type="PackedScene" uid="uid://jnbvygybp4uc" path="res://Weapons/Projectiles/projectile.tscn" id="1_imeps"]
+[ext_resource type="PackedScene" uid="uid://dpqqp25wu7mwk" path="res://Environment/Objects/mug_meter.tscn" id="2_peoni"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igvfd"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Mug" instance=ExtResource("1_imeps")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.075, 0)
+shape = SubResource("BoxShape3D_igvfd")
+
+[node name="Mesh" parent="." index="1" instance=ExtResource("2_peoni")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.075, 0)
+shape = SubResource("BoxShape3D_igvfd")
