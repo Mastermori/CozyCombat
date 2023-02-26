@@ -1,12 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1v4eclbuc4ue"]
+[gd_scene load_steps=14 format=3 uid="uid://c1v4eclbuc4ue"]
 
+[ext_resource type="Texture2D" uid="uid://dhogln6sv07y1" path="res://Environment/Materials/Textures/TexturesCom_Fabric_Carpet_1K_albedo.png" id="1_n0ny3"]
 [ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="1_o6slo"]
 [ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="2_8cfkc"]
+[ext_resource type="Texture2D" uid="uid://d4l2dhnvuswvu" path="res://Environment/Materials/Textures/TexturesCom_Fabric_Carpet_1K_normal.png" id="2_nw3j2"]
 [ext_resource type="PackedScene" uid="uid://btavo8nr5f5bj" path="res://Environment/Objects/chair.tscn" id="3_mjmuh"]
 [ext_resource type="PackedScene" uid="uid://dq7g776oohijw" path="res://Environment/Objects/pillow_80cm.tscn" id="4_sp46d"]
 [ext_resource type="PackedScene" uid="uid://cyd17mdcoc56n" path="res://Environment/Objects/pillow_40cm.tscn" id="5_p57f0"]
 [ext_resource type="PackedScene" uid="uid://wkfx5nlk1mxe" path="res://Environment/Objects/couch_cushion.tscn" id="6_x835i"]
 [ext_resource type="PackedScene" uid="uid://dq07351a64tkg" path="res://Entities/Player/Player.tscn" id="7_4axkf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shki5"]
+albedo_texture = ExtResource("1_n0ny3")
+normal_enabled = true
+normal_texture = ExtResource("2_nw3j2")
+uv1_scale = Vector3(8, 8, 8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wq3qp"]
 
@@ -18,6 +26,7 @@
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(32, 0, 0, 0, 1, 0, 0, 0, 24, 0, -1, 0)
+material_override = SubResource("StandardMaterial3D_shki5")
 mesh = SubResource("BoxMesh_wq3qp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
