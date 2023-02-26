@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://br24h7mrejpn7"]
+
+[ext_resource type="PackedScene" uid="uid://dfn7audb0hwbv" path="res://Environment/SourceFiles/Lights.dae" id="1_j6nrh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ont4u"]
+emission_enabled = true
+emission = Color(0.94902, 0.658824, 0, 1)
+emission_energy_multiplier = 20.0
+
+[node name="Lights" instance=ExtResource("1_j6nrh")]
+
+[node name="MASH1_ReproMesh" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_ont4u")

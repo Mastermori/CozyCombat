@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4aysnr0ogbby"]
+
+[ext_resource type="PackedScene" uid="uid://n1lv6j7oxn00" path="res://Environment/SourceFiles/Cable.dae" id="1_r5ljw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ln4l7"]
+albedo_color = Color(0.0117647, 0.0666667, 0.0352941, 1)
+
+[node name="Cable" instance=ExtResource("1_r5ljw")]
+
+[node name="pCylinder1" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_ln4l7")

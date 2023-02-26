@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://tmxawx2x5r8s"]
+
+[ext_resource type="PackedScene" uid="uid://d2ua2hcsbe3hc" path="res://Environment/SourceFiles/Door.dae" id="1_ktbim"]
+[ext_resource type="Material" uid="uid://0nmdoxg046s5" path="res://Environment/Materials/Wall.tres" id="2_8mk1q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llcuw"]
+albedo_color = Color(0.643137, 0.643137, 0.643137, 1)
+metallic = 1.0
+roughness = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_42xrh"]
+size = Vector3(4.00523, 2.52638, 0.267105)
+
+[node name="Door" instance=ExtResource("1_ktbim")]
+
+[node name="pCube6" parent="group2" index="0"]
+material_override = ExtResource("2_8mk1q")
+
+[node name="group1" parent="group2" index="1"]
+transform = Transform3D(0.993715, 0, -0.111937, 0, 1, 0, 0.111937, 0, 0.993715, 0.0162791, 0, -0.204875)
+
+[node name="pCylinder2" parent="group2/group1" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_llcuw")
+
+[node name="pCylinder1" parent="group2/group1" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_llcuw")
+
+[node name="pCube7" parent="group2/group1" index="2"]
+material_override = ExtResource("2_8mk1q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="group2" index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="group2/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24854, 0)
+shape = SubResource("BoxShape3D_42xrh")
