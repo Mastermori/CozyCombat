@@ -1,21 +1,23 @@
-[gd_scene load_steps=26 format=3 uid="uid://c1v4eclbuc4ue"]
+[gd_scene load_steps=28 format=3 uid="uid://c1v4eclbuc4ue"]
 
 [ext_resource type="Texture2D" uid="uid://dhogln6sv07y1" path="res://Environment/Materials/Textures/TexturesCom_Fabric_Carpet_1K_albedo.png" id="1_n0ny3"]
+[ext_resource type="Script" path="res://World.gd" id="1_nj8je"]
 [ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="1_o6slo"]
 [ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="2_8cfkc"]
 [ext_resource type="Texture2D" uid="uid://d4l2dhnvuswvu" path="res://Environment/Materials/Textures/TexturesCom_Fabric_Carpet_1K_normal.png" id="2_nw3j2"]
-[ext_resource type="PackedScene" uid="uid://btavo8nr5f5bj" path="res://Environment/Objects/chair.tscn" id="3_mjmuh"]
+[ext_resource type="PackedScene" path="res://Environment/Objects/chair.tscn" id="3_mjmuh"]
 [ext_resource type="PackedScene" uid="uid://dq7g776oohijw" path="res://Environment/Objects/pillow_80cm.tscn" id="4_sp46d"]
 [ext_resource type="PackedScene" uid="uid://cyd17mdcoc56n" path="res://Environment/Objects/pillow_40cm.tscn" id="5_p57f0"]
-[ext_resource type="PackedScene" uid="uid://wkfx5nlk1mxe" path="res://Environment/Objects/couch_cushion.tscn" id="6_x835i"]
+[ext_resource type="PackedScene" path="res://Environment/Objects/couch_cushion.tscn" id="6_x835i"]
 [ext_resource type="PackedScene" uid="uid://dq07351a64tkg" path="res://Entities/Player/Player.tscn" id="7_4axkf"]
-[ext_resource type="Material" uid="uid://0nmdoxg046s5" path="res://Environment/Materials/Wall.tres" id="8_0ggwn"]
+[ext_resource type="Material" path="res://Environment/Materials/Wall.tres" id="8_0ggwn"]
 [ext_resource type="Texture2D" uid="uid://b671celot17bk" path="res://Environment/Materials/Textures/2k_stars.jpg" id="10_mrbik"]
-[ext_resource type="PackedScene" uid="uid://dru76r53pkqxe" path="res://Environment/Objects/window_wall.tscn" id="11_ur3ok"]
-[ext_resource type="PackedScene" uid="uid://tmxawx2x5r8s" path="res://Environment/Objects/door.tscn" id="13_wlbh4"]
-[ext_resource type="PackedScene" uid="uid://como245ao70ur" path="res://Environment/Objects/blanket_v_1.tscn" id="14_avyep"]
-[ext_resource type="PackedScene" uid="uid://d4aysnr0ogbby" path="res://Environment/Objects/cable.tscn" id="15_5xgxy"]
-[ext_resource type="PackedScene" uid="uid://br24h7mrejpn7" path="res://Environment/Objects/lights.tscn" id="16_htgf3"]
+[ext_resource type="PackedScene" path="res://Environment/Objects/window_wall.tscn" id="11_ur3ok"]
+[ext_resource type="PackedScene" path="res://Environment/Objects/door.tscn" id="13_wlbh4"]
+[ext_resource type="PackedScene" path="res://Environment/Objects/blanket_v_1.tscn" id="14_avyep"]
+[ext_resource type="PackedScene" path="res://Environment/Objects/cable.tscn" id="15_5xgxy"]
+[ext_resource type="PackedScene" path="res://Environment/Objects/lights.tscn" id="16_htgf3"]
+[ext_resource type="PackedScene" uid="uid://bhgeh1g18xq6e" path="res://Entities/Enemies/enemy_spawner.tscn" id="18_n3e0o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shki5"]
 albedo_texture = ExtResource("1_n0ny3")
@@ -60,6 +62,7 @@ fog_density = 0.001
 fog_sky_affect = 0.5
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_nj8je")
 
 [node name="Bed" parent="." instance=ExtResource("1_o6slo")]
 transform = Transform3D(-3.49691e-07, 0, 8, 0, 8, 0, -8, 0, -3.49691e-07, -6.68824, -0.50145, 7.88722)
@@ -267,3 +270,15 @@ transform = Transform3D(-3.49691e-07, 0, -8, 0, 8, 0, 8, 0, -3.49691e-07, -6.636
 
 [node name="Lights" parent="Cable" instance=ExtResource("16_htgf3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0326586, 0)
+
+[node name="Entities" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4069, -0.437307, -8.68046)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("18_n3e0o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.6, 8.5)
+delay_min = 1.5
+delay_max = 8.0
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("18_n3e0o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.6, -8.5)
+delay_min = 3.0

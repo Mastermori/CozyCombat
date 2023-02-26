@@ -35,6 +35,9 @@ func calculate_movement_velocity() -> void:
 func hit_effect(entity: Entity):
 	pass
 
+func die():
+	Global.score += 100
+	super.die()
 
 func _on_hitbox_on_hit(entity_hit) -> void:
 	stagger_timer = .4
