@@ -16,3 +16,7 @@ export_presets.cfg
 .godot/global_script_class_cache.cfg
 
 .godot/uid_cache.bin
+
+out/
+
+.godot/exported/
