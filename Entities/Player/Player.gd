@@ -9,6 +9,7 @@ extends Entity
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var look_sensitivity: float = ProjectSettings.get_setting("player/look_sensitivity")
 
+var dead := false
 
 @onready var hands := $Hands
 @onready var right_hand: Hand = $Hands/RightHand
@@ -17,6 +18,7 @@ var look_sensitivity: float = ProjectSettings.get_setting("player/look_sensitivi
 
 func _ready():
 	Global.player = self
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -30,10 +32,13 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("ui_cancel"): 
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE
+	if not dead:
+		if Input.is_action_just_pressed("ui_cancel"): 
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE
 
 func calculate_movement_velocity() -> void:
+	if dead:
+		return
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
@@ -50,6 +55,8 @@ func calculate_movement_velocity() -> void:
 		velocity.z = move_toward(velocity.z, 0, speed)
 
 func _input(event):
+	if dead:
+		return
 	if not is_controlling():
 		return
 	
@@ -65,6 +72,10 @@ func _input(event):
 func die():
 	print("You died!")
 	Engine.time_scale = .1
+	
+	$HUD.display_death()
+	dead = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func is_controlling() -> bool:
 	return Input.mouse_mode == Input.MOUSE_MODE_CAPTURED

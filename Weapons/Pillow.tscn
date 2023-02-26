@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://2unjh0lse0lx"]
+[gd_scene load_steps=7 format=3 uid="uid://2unjh0lse0lx"]
 
 [ext_resource type="PackedScene" uid="uid://bauve1kdqclwq" path="res://Environment/SourceFiles/Pillow_80CM.dae" id="1_n2cl3"]
 [ext_resource type="Script" path="res://Weapons/Weapon.gd" id="2_g5cfs"]
 [ext_resource type="Script" path="res://Weapons/Hitbox.gd" id="2_w4f0l"]
+[ext_resource type="Material" uid="uid://cknwlib84x1fe" path="res://Environment/Materials/new_standard_material_3d.tres" id="3_56nfs"]
 [ext_resource type="AudioStream" uid="uid://b6n3wlye5p51t" path="res://assets/Soundeffects/soft_punch3.wav" id="5_vtg8u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pj3oj"]
@@ -10,6 +11,9 @@ size = Vector3(0.8, 0.65, 2)
 
 [node name="Pillow" instance=ExtResource("1_n2cl3")]
 script = ExtResource("2_g5cfs")
+
+[node name="Pillow_80CMFBXASC058pCube1" parent="." index="0"]
+material_override = ExtResource("3_56nfs")
 
 [node name="Hitbox" type="Area3D" parent="." index="1"]
 collision_layer = 0
