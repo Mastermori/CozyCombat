@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq07351a64tkg"]
+[gd_scene load_steps=10 format=3 uid="uid://dq07351a64tkg"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h5tho"]
 [ext_resource type="Script" path="res://Entities/Player/RightHand.gd" id="2_8n6x3"]
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0.15, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,13 +32,13 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0.0174533, 0.1309, -0.122173)]
 }
 
 [sub_resource type="Animation" id="Animation_4alff"]
 resource_name = "punch"
 length = 0.5
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,9 +47,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.35, 0.5),
-"transitions": PackedFloat32Array(2.07053, 0.450625, 4, 2.07053),
+"transitions": PackedFloat32Array(2.07053, 0.5, 4, 2.07053),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, -0.5), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.25, 0.4, 0.2), Vector3(-0.35, 0, -0.5), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -59,9 +59,55 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.35, 0.5),
-"transitions": PackedFloat32Array(1, 0.450625, 4, 1),
+"transitions": PackedFloat32Array(1, 0.5, 4, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(-0.174533, 0.0872665, -0.0872665), Vector3(0.523599, 0.1309, -0.174533), Vector3(-1.48353, 0.261799, 0), Vector3(-0.174533, 0.0872665, -0.0872665)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_weapon_active"
+}, {
+"args": [false],
+"method": &"set_weapon_active"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_n1mmh"]
+resource_name = "punch_2"
+length = 0.5
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.175, 0.19, 0.35, 0.5),
+"transitions": PackedFloat32Array(2.07053, 0.5, 0.297302, 1.07177, 1),
+"update": 0,
+"values": [Vector3(0.15, 0, 0), Vector3(0.25, 0.375, 0.2), Vector3(0.25, 0.375, 0.2), Vector3(-0.35, -0.1, -0.5), Vector3(0.15, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemContainer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.175, 0.19, 0.35, 0.5),
+"transitions": PackedFloat32Array(1.46409, 0.5, 0.307786, 1.18921, 1),
+"update": 0,
+"values": [Vector3(0.0174533, 0.1309, -0.122173), Vector3(0.632609, 0.424634, -0.396156), Vector3(0.632609, 0.424634, -0.396156), Vector3(-1.0981, 1.71522, -1.23942), Vector3(0.0174533, 0.1309, -0.122173)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -84,7 +130,8 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cf8gk"]
 _data = {
 "RESET": SubResource("Animation_s3w6v"),
-"punch": SubResource("Animation_4alff")
+"punch": SubResource("Animation_4alff"),
+"punch_2": SubResource("Animation_n1mmh")
 }
 
 [node name="Player" type="CharacterBody3D"]
@@ -109,6 +156,7 @@ script = ExtResource("2_8n6x3")
 metadata/_edit_group_ = true
 
 [node name="ItemContainer" type="Node3D" parent="Hands/RightHand"]
+transform = Transform3D(0.983778, 0.123088, 0.130506, -0.121851, 0.992395, -0.0174524, -0.131662, 0.00126698, 0.991294, 0.15, 0, 0)
 
 [node name="Pillow" parent="Hands/RightHand/ItemContainer" instance=ExtResource("4_sns0d")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.12, 0, -0.13)

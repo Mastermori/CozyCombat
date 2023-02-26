@@ -9,7 +9,7 @@ func _ready() -> void:
 	weapon = $ItemContainer.get_child(0)
 
 func punch():
-	animation_player.play("punch")
+	animation_player.play("punch_2")
 
 func set_weapon_active(value: bool) -> void:
 	weapon.active = value
