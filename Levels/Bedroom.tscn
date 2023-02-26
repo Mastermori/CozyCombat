@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1v4eclbuc4ue"]
+[gd_scene load_steps=26 format=3 uid="uid://c1v4eclbuc4ue"]
 
 [ext_resource type="Texture2D" uid="uid://dhogln6sv07y1" path="res://Environment/Materials/Textures/TexturesCom_Fabric_Carpet_1K_albedo.png" id="1_n0ny3"]
 [ext_resource type="PackedScene" uid="uid://bh6xgmqts6mi6" path="res://Environment/Objects/bed.tscn" id="1_o6slo"]
@@ -9,6 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://cyd17mdcoc56n" path="res://Environment/Objects/pillow_40cm.tscn" id="5_p57f0"]
 [ext_resource type="PackedScene" uid="uid://wkfx5nlk1mxe" path="res://Environment/Objects/couch_cushion.tscn" id="6_x835i"]
 [ext_resource type="PackedScene" uid="uid://dq07351a64tkg" path="res://Entities/Player/Player.tscn" id="7_4axkf"]
+[ext_resource type="Material" uid="uid://0nmdoxg046s5" path="res://Environment/Materials/Wall.tres" id="8_0ggwn"]
+[ext_resource type="Texture2D" uid="uid://b671celot17bk" path="res://Environment/Materials/Textures/2k_stars.jpg" id="10_mrbik"]
+[ext_resource type="PackedScene" uid="uid://dru76r53pkqxe" path="res://Environment/Objects/window_wall.tscn" id="11_ur3ok"]
+[ext_resource type="PackedScene" uid="uid://tmxawx2x5r8s" path="res://Environment/Objects/door.tscn" id="13_wlbh4"]
+[ext_resource type="PackedScene" uid="uid://como245ao70ur" path="res://Environment/Objects/blanket_v_1.tscn" id="14_avyep"]
+[ext_resource type="PackedScene" uid="uid://d4aysnr0ogbby" path="res://Environment/Objects/cable.tscn" id="15_5xgxy"]
+[ext_resource type="PackedScene" uid="uid://br24h7mrejpn7" path="res://Environment/Objects/lights.tscn" id="16_htgf3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shki5"]
 albedo_texture = ExtResource("1_n0ny3")
@@ -22,44 +29,241 @@ uv1_scale = Vector3(8, 8, 8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jdak5"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gc6sr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuu5b"]
+transparency = 1
+blend_mode = 1
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b77yl"]
+panorama = ExtResource("10_mrbik")
+
+[sub_resource type="Sky" id="Sky_mqunc"]
+sky_material = SubResource("PanoramaSkyMaterial_b77yl")
+
+[sub_resource type="Environment" id="Environment_ypll0"]
+background_mode = 2
+sky = SubResource("Sky_mqunc")
+ambient_light_source = 2
+ambient_light_color = Color(0.0705882, 0.0980392, 0.129412, 1)
+ambient_light_energy = 3.0
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 1.0
+glow_blend_mode = 0
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 1.0
+fog_enabled = true
+fog_light_color = Color(0.105882, 0.121569, 0.137255, 1)
+fog_density = 0.001
+fog_sky_affect = 0.5
+
 [node name="Node3D" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(32, 0, 0, 0, 1, 0, 0, 0, 24, 0, -1, 0)
-material_override = SubResource("StandardMaterial3D_shki5")
-mesh = SubResource("BoxMesh_wq3qp")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_fb08a")
-
 [node name="Bed" parent="." instance=ExtResource("1_o6slo")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -10.9441, -0.776959, -1.32339)
+transform = Transform3D(-3.49691e-07, 0, 8, 0, 8, 0, -8, 0, -3.49691e-07, -6.68824, -0.50145, 7.88722)
 
 [node name="Mattress" parent="Bed" instance=ExtResource("2_8cfkc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135293, -0.221586, -0.0292182)
 
-[node name="Chair" parent="." instance=ExtResource("3_mjmuh")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.826644, 2.95942, 0.439165)
+[node name="Pillow_80CM" parent="Bed" instance=ExtResource("4_sp46d")]
+transform = Transform3D(0.95657, 0.038354, 0.295368, -0.0360821, 0.765398, -0.0551016, -0.289262, 0.0313594, 0.983632, 0.0895913, 0.415845, -0.393788)
 
-[node name="Pillow_80CM" parent="." instance=ExtResource("4_sp46d")]
-transform = Transform3D(8, 0, 0, 0, 6.09085, -0.996326, 0, 0.743006, 8.16745, -11.0245, 2.5498, -5.17158)
+[node name="Chair" parent="." instance=ExtResource("3_mjmuh")]
+transform = Transform3D(-8, 0, 6.99382e-07, 0, 8, 0, -6.99382e-07, 0, -8, -12.8534, 2.95942, -6.10182)
+
+[node name="Chair2" parent="." instance=ExtResource("3_mjmuh")]
+transform = Transform3D(-8, 0, 6.99382e-07, 0, 8, 0, -6.99382e-07, 0, -8, -8.4244, 2.95942, -6.10182)
+
+[node name="Chair3" parent="." instance=ExtResource("3_mjmuh")]
+transform = Transform3D(-8, 0, 6.99382e-07, 0, 8, 0, -6.99382e-07, 0, -8, -3.50689, 2.95942, -6.10182)
+
+[node name="Chair4" parent="." instance=ExtResource("3_mjmuh")]
+transform = Transform3D(-8, 0, 6.99382e-07, 0, 8, 0, -6.99382e-07, 0, -8, 0.460149, 2.95942, -6.10182)
+
+[node name="Chair5" parent="." instance=ExtResource("3_mjmuh")]
+transform = Transform3D(2.69242, 0, -7.53332, 0, 8, 0, 7.53331, 0, 2.69242, 10.149, 2.95942, -4.18663)
+
+[node name="Pillow_80CM2" parent="." instance=ExtResource("4_sp46d")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -23.0557, 0, 0)
+
+[node name="Pillow_80CM3" parent="." instance=ExtResource("4_sp46d")]
+transform = Transform3D(6.55338, 0, 4.58838, 0, 8, 0, -4.58838, 0, 6.55338, -9.53069, -0.48511, -0.342714)
+
+[node name="Pillow_80CM6" parent="." instance=ExtResource("4_sp46d")]
+transform = Transform3D(7.8091, -1.73724, 0, 1.73724, 7.8091, 0, 0, 0, 8, 12.9478, 3.55703, 2.91729)
+
+[node name="Pillow_80CM4" parent="." instance=ExtResource("4_sp46d")]
+transform = Transform3D(8, 0, 0, 0, 3.04198, 7.39908, 0, -7.39908, 3.04198, -3.82547, 1.74129, -8.67966)
+
+[node name="Pillow_80CM5" parent="." instance=ExtResource("4_sp46d")]
+transform = Transform3D(7.99216, 0.329045, 0.130614, -0.0846147, -1.09056, 7.92487, 0.34376, -7.91848, -1.08602, -0.0747573, 2.24699, -2.14518)
 
 [node name="Pillow_40CM" parent="." instance=ExtResource("5_p57f0")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.760407, 0.0521559, -2.40846)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -26.4491, 0.0521559, -6.2761)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(32, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, -11.883)
-mesh = SubResource("BoxMesh_jdak5")
+[node name="Pillow_40CM6" parent="." instance=ExtResource("5_p57f0")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -26.4491, 0.0521559, -6.2761)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0924618, 1.11644, -0.746726)
-light_color = Color(0.996078, 1, 0.768627, 1)
-light_energy = 0.5
+[node name="Pillow_40CM7" parent="." instance=ExtResource("5_p57f0")]
+transform = Transform3D(7.80203, -1.70862, -0.45712, 1.76871, 7.53696, 2.01642, 0, -2.06759, 7.7282, 12.5925, 5.27648, 5.4522)
+
+[node name="Pillow_40CM2" parent="." instance=ExtResource("5_p57f0")]
+transform = Transform3D(3.82262, 4.50964, 5.38987, -6.48049, 4.63555, 0.717605, -2.71861, -4.70901, 5.86808, -13.367, 0.805755, 3.03505)
+
+[node name="Pillow_40CM3" parent="." instance=ExtResource("5_p57f0")]
+transform = Transform3D(-0.00229253, -1.22699, 7.90535, -7.77091, -1.87796, -0.293733, 1.9008, -7.67905, -1.19132, -6.09266, 0.805755, -2.64805)
+
+[node name="Pillow_40CM4" parent="." instance=ExtResource("5_p57f0")]
+transform = Transform3D(1.53275, -5.45985, -5.64275, -7.77091, -1.87796, -0.293733, -1.12415, 5.53744, -5.66331, 3.23746, 0.868871, 10.4549)
+
+[node name="Pillow_40CM5" parent="." instance=ExtResource("5_p57f0")]
+transform = Transform3D(1.8713, -7.77536, 0.204972, -7.77091, -1.87796, -0.293733, 0.333601, -0.130395, -7.99198, 2.14648, 0.868871, 5.13967)
 
 [node name="CouchCushion" parent="." instance=ExtResource("6_x835i")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 5.62671, 0, 4.30536)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -23.0135, 0, 4.30527)
+
+[node name="CouchCushion6" parent="." instance=ExtResource("6_x835i")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 12.9374, 4.59308, 8.76464)
+
+[node name="CouchCushion7" parent="." instance=ExtResource("6_x835i")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 12.8234, 0.0997286, 3.13428)
+
+[node name="CouchCushion9" parent="CouchCushion7" instance=ExtResource("6_x835i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.237512, 0)
+
+[node name="CouchCushion8" parent="CouchCushion7" instance=ExtResource("6_x835i")]
+transform = Transform3D(0.957304, 0, -0.289082, 0, 1, 0, 0.289082, 0, 0.957304, 0, 0.126083, 0)
+
+[node name="CouchCushion4" parent="." instance=ExtResource("6_x835i")]
+transform = Transform3D(8, 0, 0, 0, -0.919914, -7.94693, 0, 7.94693, -0.919914, 12.8896, 2.18687, 6.25246)
+
+[node name="CouchCushion5" parent="." instance=ExtResource("6_x835i")]
+transform = Transform3D(8, 0, 0, 0, 0.84317, -7.95544, 0, 7.95544, 0.84317, 12.8072, 1.98146, 11.1453)
+
+[node name="CouchCushion8" parent="." instance=ExtResource("6_x835i")]
+transform = Transform3D(7.99908, -0.0750251, -0.0952394, -0.115364, -2.77708, -7.50163, 0.0372904, 7.50215, -2.77784, 13.0866, 1.86029, -0.806239)
+
+[node name="CouchCushion2" parent="." instance=ExtResource("6_x835i")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.825186, 2.49498, 6.83498)
+
+[node name="CouchCushion3" parent="." instance=ExtResource("6_x835i")]
+transform = Transform3D(-2.78426, -7.49986, 0, 7.49986, -2.78426, 0, 0, 0, 8, 3.15608, 1.80259, -5.33516)
 
 [node name="Player" parent="." instance=ExtResource("7_4axkf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.642, 0.884508, -4.27553)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55844, 0.884508, -4.27553)
+
+[node name="Boundery" type="Node" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Boundery"]
+transform = Transform3D(32, 0, 0, 0, 1, 0, 0, 0, 24, 0.0151157, -0.937307, -0.0293274)
+material_override = SubResource("StandardMaterial3D_shki5")
+mesh = SubResource("BoxMesh_wq3qp")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boundery/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundery/Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_fb08a")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Boundery"]
+transform = Transform3D(32, 0, 0, 0, 1, 0, 0, 0, 24, 0, 19.7201, 0)
+material_override = ExtResource("8_0ggwn")
+mesh = SubResource("BoxMesh_wq3qp")
+skeleton = NodePath("../..")
+
+[node name="Wall_2" type="MeshInstance3D" parent="Boundery"]
+transform = Transform3D(4, 0, 0, 0, 20, 0, 0, 0, 32, -17, 9.29816, -3.09308)
+material_override = ExtResource("8_0ggwn")
+mesh = SubResource("BoxMesh_jdak5")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boundery/Wall_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundery/Wall_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_gc6sr")
+
+[node name="Wall_3" type="MeshInstance3D" parent="Boundery"]
+transform = Transform3D(4, 0, 0, 0, 20, 0, 0, 0, 32, 17.7475, 9.29816, -3.09308)
+material_override = ExtResource("8_0ggwn")
+mesh = SubResource("BoxMesh_jdak5")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boundery/Wall_3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundery/Wall_3/StaticBody3D"]
+shape = SubResource("BoxShape3D_gc6sr")
+
+[node name="Wall_4" type="MeshInstance3D" parent="Boundery"]
+transform = Transform3D(32, 0, 0, 0, 20, 0, 0, 0, 4, 0, -18.4091, -13.8146)
+material_override = ExtResource("8_0ggwn")
+mesh = SubResource("BoxMesh_jdak5")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boundery/Wall_4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundery/Wall_4/StaticBody3D"]
+shape = SubResource("BoxShape3D_gc6sr")
+
+[node name="WindowWall" parent="Boundery" instance=ExtResource("11_ur3ok")]
+transform = Transform3D(-8, 0, 6.99382e-07, 0, 8, 0, -6.99382e-07, 0, -8, 0, -0.404654, 12.8048)
+
+[node name="Window" type="MeshInstance3D" parent="Boundery/WindowWall"]
+transform = Transform3D(1.2, 0, 0, 0, 1.5, 0, 0, 0, 0.05, 0, 1.46368, -0.0126911)
+material_override = SubResource("StandardMaterial3D_nuu5b")
+mesh = SubResource("BoxMesh_jdak5")
+skeleton = NodePath("../../..")
+
+[node name="Wall_5" type="MeshInstance3D" parent="Boundery/WindowWall"]
+transform = Transform3D(0.125, 0, 0, 0, 2.12725, 0, 0, 0, 0.15625, 0.00239681, 1.27196, -0.0632372)
+material_override = ExtResource("8_0ggwn")
+mesh = SubResource("BoxMesh_jdak5")
+skeleton = NodePath("../../..")
+
+[node name="Door" parent="." instance=ExtResource("13_wlbh4")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0.561082, -0.477493, -11.6326)
+
+[node name="BlanketV1" parent="." instance=ExtResource("14_avyep")]
+transform = Transform3D(-3.49691e-07, 0, 8, 0, 8, 0, -8, 0, -3.49691e-07, -9.2282, 2.94307, 1.60519)
+
+[node name="BlanketV2" parent="." instance=ExtResource("14_avyep")]
+transform = Transform3D(-3.49691e-07, 0, 8, -0.546073, 9.24625, -2.38696e-08, -7.98134, -0.632616, -3.48875e-07, -0.573004, 2.62861, 1.9699)
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_ypll0")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lighting"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.4273, 6.24726, -40.7486)
+light_color = Color(0.729412, 0.698039, 0.345098, 1)
+light_energy = 16.0
+spot_range = 37.3254
+spot_angle = 27.0122
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7791, -9.53674e-07, -15.3246)
+light_color = Color(1, 0.992157, 0.74902, 1)
+omni_range = 7.52944
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1268, 2.76509, -0.511059)
+light_color = Color(0.999999, 0.996549, 0.500222, 1)
+light_energy = 0.25
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91545, 2.76509, -0.511059)
+light_color = Color(0.999999, 0.996549, 0.500222, 1)
+light_energy = 0.25
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0257101, 6.26365, -1.96098)
+light_color = Color(0.999999, 0.996549, 0.500222, 1)
+light_energy = 0.25
+
+[node name="Cable" parent="." instance=ExtResource("15_5xgxy")]
+transform = Transform3D(-3.49691e-07, 0, -8, 0, 8, 0, 8, 0, -3.49691e-07, -6.6366, 1.70315, -6.77382)
+
+[node name="Lights" parent="Cable" instance=ExtResource("16_htgf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0326586, 0)

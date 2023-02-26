@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyd17mdcoc56n"]
+[gd_scene load_steps=4 format=3 uid="uid://cyd17mdcoc56n"]
 
 [ext_resource type="PackedScene" uid="uid://cnmf1n14s382h" path="res://Environment/SourceFiles/Pillow_40CM.dae" id="1_0wf26"]
 [ext_resource type="Material" uid="uid://cknwlib84x1fe" path="res://Environment/Materials/new_standard_material_3d.tres" id="1_ncetg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dw6w1"]
+size = Vector3(0.387152, 0.139502, 0.387666)
 
 [node name="Pillow_40CM" instance=ExtResource("1_0wf26")]
 
 [node name="Pillow_3KFBXASC058pCube1" parent="." index="0"]
 material_override = ExtResource("1_ncetg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Pillow_3KFBXASC058pCube1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillow_3KFBXASC058pCube1/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_dw6w1")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cekid5bn7q8ek"]
+[gd_scene load_steps=34 format=3 uid="uid://cekid5bn7q8ek"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_56hkj"]
 [ext_resource type="Texture2D" uid="uid://btr7p2ganhlqg" path="res://icon.svg" id="1_akpbq"]
@@ -13,6 +13,11 @@
 [ext_resource type="Shader" path="res://Static.gdshader" id="7_hpwi0"]
 [ext_resource type="PackedScene" uid="uid://u8sujvshj643" path="res://Environment/Objects/matress.tscn" id="7_vtgnf"]
 [ext_resource type="PackedScene" uid="uid://wkfx5nlk1mxe" path="res://Environment/Objects/couch_cushion.tscn" id="13_am6ps"]
+[ext_resource type="PackedScene" uid="uid://dru76r53pkqxe" path="res://Environment/Objects/window_wall.tscn" id="14_fitok"]
+[ext_resource type="PackedScene" uid="uid://tmxawx2x5r8s" path="res://Environment/Objects/door.tscn" id="15_30okk"]
+[ext_resource type="PackedScene" uid="uid://b6rbh20djuw5c" path="res://Environment/SourceFiles/BlanketV1.dae" id="16_nag7h"]
+[ext_resource type="PackedScene" uid="uid://d4aysnr0ogbby" path="res://Environment/Objects/cable.tscn" id="17_e7puu"]
+[ext_resource type="PackedScene" uid="uid://br24h7mrejpn7" path="res://Environment/Objects/lights.tscn" id="18_pf625"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7loji"]
 albedo_texture = ExtResource("1_akpbq")
@@ -190,3 +195,18 @@ grow_vertical = 2
 
 [node name="CouchCushion" parent="." instance=ExtResource("13_am6ps")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9258, 0.0112608, -2.81504)
+
+[node name="WindowWall2" parent="." instance=ExtResource("14_fitok")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -1.85534, 0.0112609, -17.9041)
+
+[node name="Door" parent="." instance=ExtResource("15_30okk")]
+transform = Transform3D(-3.49691e-07, 0, 8, 0, 8, 0, -8, 0, -3.49691e-07, -18.7778, 0.0112607, 0.797438)
+
+[node name="BlanketV1" parent="." instance=ExtResource("16_nag7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92516, 0.0112609, 4.41001)
+
+[node name="Cable" parent="." instance=ExtResource("17_e7puu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26714, 0.0112608, 21.8252)
+
+[node name="Lights" parent="." instance=ExtResource("18_pf625")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25352, 0.0112608, 21.8467)
