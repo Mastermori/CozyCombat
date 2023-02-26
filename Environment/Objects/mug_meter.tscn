@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpqqp25wu7mwk"]
+
+[ext_resource type="PackedScene" uid="uid://ch5w72cvpa6rl" path="res://Environment/SourceFiles/Mug_Meter.gltf" id="1_rodbd"]
+
+[node name="Mug_Meter" instance=ExtResource("1_rodbd")]

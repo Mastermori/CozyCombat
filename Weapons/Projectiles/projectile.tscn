@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://jnbvygybp4uc"]
+[gd_scene load_steps=3 format=3 uid="uid://jnbvygybp4uc"]
 
+[ext_resource type="Script" path="res://Weapons/Projectiles/projectile.gd" id="1_3d5m2"]
 [ext_resource type="Script" path="res://Weapons/Hitbox.gd" id="1_7ow2l"]
 
 [node name="Projectile" type="Area3D"]
+script = ExtResource("1_3d5m2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
