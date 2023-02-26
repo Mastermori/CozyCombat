@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq07351a64tkg"]
+[gd_scene load_steps=11 format=3 uid="uid://j6d1rsyqbua5"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h5tho"]
 [ext_resource type="Script" path="res://Entities/Player/RightHand.gd" id="2_8n6x3"]
+[ext_resource type="AudioStream" uid="uid://b6n3wlye5p51t" path="res://assets/Soundeffects/soft_punch3.wav" id="4_s0mfv"]
 [ext_resource type="PackedScene" uid="uid://2unjh0lse0lx" path="res://Weapons/Pillow.tscn" id="4_sns0d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oxtg2"]
@@ -165,3 +166,8 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.12, 
 libraries = {
 "": SubResource("AnimationLibrary_cf8gk")
 }
+
+[node name="pillow_punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s0mfv")
+volume_db = -3.0
+pitch_scale = 1.02
