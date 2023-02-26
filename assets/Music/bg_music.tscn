@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxvwapeaow1ov"]
+
+[ext_resource type="AudioStream" uid="uid://dfrabucknhwyw" path="res://assets/Music/27-Dark Fantasy Studio- Silent walk.wav" id="1_3r5xb"]
+
+[node name="background_music" type="AudioStreamPlayer"]
+stream = ExtResource("1_3r5xb")
+volume_db = -25.0
+autoplay = true

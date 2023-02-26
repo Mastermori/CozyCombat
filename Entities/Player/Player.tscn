@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dq07351a64tkg"]
+[gd_scene load_steps=14 format=3 uid="uid://dq07351a64tkg"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h5tho"]
 [ext_resource type="Script" path="res://Entities/Player/RightHand.gd" id="2_8n6x3"]
 [ext_resource type="Script" path="res://Hurtbox.gd" id="4_6ois3"]
+[ext_resource type="AudioStream" uid="uid://b6n3wlye5p51t" path="res://assets/Soundeffects/soft_punch3.wav" id="4_s0mfv"]
 [ext_resource type="PackedScene" uid="uid://2unjh0lse0lx" path="res://Weapons/Pillow.tscn" id="4_sns0d"]
 [ext_resource type="Script" path="res://UI/HUD/HUD.gd" id="5_fsitr"]
 
@@ -231,3 +232,8 @@ theme_override_font_sizes/font_size = 65
 text = "You died..."
 
 [connection signal="health_changed" from="." to="HUD" method="update_health_display"]
+
+[node name="pillow_punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s0mfv")
+volume_db = -8.0
+pitch_scale = 1.02
