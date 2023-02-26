@@ -3,10 +3,14 @@ extends Control
 
 func _ready():
 	$DeathHUD.hide()
+	$PausedHUD.hide()
 	Global.score_changed.connect(score_changed)
 
 func display_death():
 	$DeathHUD.show()
+
+func display_paused(value: bool):
+	$PausedHUD.visible = value
 
 func update_health_display(new_health, previous_health, max_health) -> void:
 	var tween = create_tween()

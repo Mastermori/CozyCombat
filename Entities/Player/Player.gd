@@ -18,7 +18,6 @@ var dead := false
 
 func _ready():
 	Global.player = self
-	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -34,7 +33,14 @@ func _physics_process(delta: float) -> void:
 	
 	if not dead:
 		if Input.is_action_just_pressed("ui_cancel"): 
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE
+			if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+				$HUD.display_paused(false)
+				Engine.time_scale = 1
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			else:
+				$HUD.display_paused(true)
+				Engine.time_scale = 0
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func calculate_movement_velocity() -> void:
 	if dead:
