@@ -1,55 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://2unjh0lse0lx"]
+[gd_scene load_steps=6 format=3 uid="uid://2unjh0lse0lx"]
 
 [ext_resource type="PackedScene" uid="uid://bauve1kdqclwq" path="res://Environment/SourceFiles/Pillow_80CM.dae" id="1_n2cl3"]
 [ext_resource type="Script" path="res://Weapons/Weapon.gd" id="2_g5cfs"]
 [ext_resource type="Script" path="res://Weapons/Hitbox.gd" id="2_w4f0l"]
-[ext_resource type="Texture2D" uid="uid://dc0ayjebdhkt5" path="res://assets/Sprites/feather.png" id="4_wtlh7"]
+[ext_resource type="PackedScene" uid="uid://d148kus5ldlu5" path="res://Weapons/feather_particles.tscn" id="4_7we3t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pj3oj"]
 size = Vector3(0.8, 0.4, 0.8)
-
-[sub_resource type="Curve" id="Curve_jfvxr"]
-_data = [Vector2(0, 1), 0.0, -2.06667, 0, 0, Vector2(0.448052, 0.272727), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.102439, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_q1dlo"]
-curve = SubResource("Curve_jfvxr")
-
-[sub_resource type="Curve" id="Curve_d1dv2"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.94, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_jb7db"]
-curve = SubResource("Curve_d1dv2")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u8iyh"]
-lifetime_randomness = 0.4
-emission_shape = 3
-emission_box_extents = Vector3(0.5, 0.3, 0.5)
-particle_flag_align_y = true
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 2.0
-initial_velocity_max = 2.5
-damping_min = 5.0
-damping_max = 5.0
-damping_curve = SubResource("CurveTexture_q1dlo")
-scale_curve = SubResource("CurveTexture_jb7db")
-turbulence_noise_scale = 7.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2ll4"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("4_wtlh7")
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_180n3"]
-material = SubResource("StandardMaterial3D_e2ll4")
-size = Vector2(0.2, 0.2)
 
 [node name="Pillow" instance=ExtResource("1_n2cl3")]
 script = ExtResource("2_g5cfs")
@@ -65,14 +22,8 @@ knockback_strength = 20.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
 shape = SubResource("BoxShape3D_pj3oj")
 
-[node name="FeatherParticles" type="GPUParticles3D" parent="." index="3"]
-emitting = false
-amount = 35
-lifetime = 1.5
-one_shot = true
-explosiveness = 1.0
-visibility_aabb = AABB(-1.76105, -1.52918, -1.35799, 3.23521, 3.2729, 2.88934)
-process_material = SubResource("ParticleProcessMaterial_u8iyh")
-draw_pass_1 = SubResource("QuadMesh_180n3")
+[node name="FeatherParticles" parent="." index="3" instance=ExtResource("4_7we3t")]
+
+[node name="ParticleContainer" type="Node3D" parent="." index="4"]
 
 [connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered"]

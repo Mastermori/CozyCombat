@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmakgfx0ejjeg"]
+[gd_scene load_steps=12 format=3 uid="uid://bmakgfx0ejjeg"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Enemy.gd" id="1_63ka3"]
 [ext_resource type="Script" path="res://Entities/Enemies/HealthLabel.gd" id="2_dto7e"]
 [ext_resource type="Script" path="res://Hurtbox.gd" id="3_0qa6b"]
+[ext_resource type="PackedScene" uid="uid://d148kus5ldlu5" path="res://Weapons/feather_particles.tscn" id="4_7qvlt"]
+[ext_resource type="Script" path="res://Weapons/Hitbox.gd" id="5_201sn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ijs5t"]
 
@@ -12,7 +14,14 @@ albedo_color = Color(0.619608, 0.12549, 0.12549, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lnmxr"]
 material = SubResource("StandardMaterial3D_h1ncu")
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2dd04"]
+radius = 0.28
+height = 0.8
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_btj4q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3s8xq"]
+size = Vector3(1, 1.75, 0.5)
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_63ka3")
@@ -23,10 +32,14 @@ shape = SubResource("CapsuleShape3D_ijs5t")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_lnmxr")
 
+[node name="Eyes" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.465121, -0.347825)
+mesh = SubResource("CapsuleMesh_2dd04")
+
 [node name="HealthLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11915, 0)
 billboard = 1
-text = "Error!"
+text = "Amogus?"
 script = ExtResource("2_dto7e")
 target = NodePath("..")
 
@@ -38,3 +51,19 @@ script = ExtResource("3_0qa6b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape3D_btj4q")
+
+[node name="FeatherParticles" parent="." instance=ExtResource("4_7qvlt")]
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("5_201sn")
+damage = 5.0
+knockback_source = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251817, -0.504677)
+shape = SubResource("BoxShape3D_3s8xq")
+
+[connection signal="on_hit" from="Hitbox" to="." method="_on_hitbox_on_hit"]

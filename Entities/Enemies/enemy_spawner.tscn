@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhgeh1g18xq6e"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/EnemySpawner.gd" id="1_eiseq"]
+[ext_resource type="PackedScene" uid="uid://bmakgfx0ejjeg" path="res://Entities/Enemies/Enemy.tscn" id="2_wndol"]
+
+[node name="EnemySpawner" type="Marker3D"]
+script = ExtResource("1_eiseq")
+enemy_scene = ExtResource("2_wndol")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

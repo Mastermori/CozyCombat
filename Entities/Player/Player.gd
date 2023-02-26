@@ -15,15 +15,29 @@ var look_sensitivity: float = ProjectSettings.get_setting("player/look_sensitivi
 @onready var camera: Camera3D = $Camera3D
 
 
+func _ready():
+	Global.player = self
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	
+	if not is_staggered():
+		calculate_movement_velocity()
+	else:
+		calculate_stagger_velocity()
+	
+	move_and_slide()
+	
+	if Input.is_action_just_pressed("ui_cancel"): 
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE
 
+func calculate_movement_velocity() -> void:
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("strafe_left", "strafe_right", "move_forward", "move_backwards")
@@ -34,10 +48,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-	move_and_slide()
-	
-	if Input.is_action_just_pressed("ui_cancel"): 
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE
 
 func _input(event):
 	if not is_controlling():
@@ -47,10 +57,14 @@ func _input(event):
 		right_hand.punch()
 	
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * look_sensitivity * .001)
-		camera.rotate_x(-event.relative.y * look_sensitivity * .002)
+		rotate_y(-event.relative.x * look_sensitivity * .001 * Engine.time_scale)
+		camera.rotate_x(-event.relative.y * look_sensitivity * .002 * Engine.time_scale)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/4, PI/3)
 		hands.rotation = camera.rotation
+
+func die():
+	print("You died!")
+	Engine.time_scale = .1
 
 
 func is_controlling() -> bool:
