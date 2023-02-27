@@ -156,10 +156,10 @@ transform = Transform3D(-2.78426, -7.49986, 0, 7.49986, -2.78426, 0, 0, 0, 8, 3.
 
 [node name="Player" parent="." instance=ExtResource("7_4axkf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55844, 0.884508, -4.27553)
-speed = null
-jump_velocity = null
-max_health = null
-knockback_drag = null
+speed = 10.0
+jump_velocity = 4.5
+max_health = 20.0
+knockback_drag = 0.1
 
 [node name="Boundery" type="Node" parent="."]
 

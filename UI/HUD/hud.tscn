@@ -11,6 +11,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
 [node name="HUD" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +22,7 @@ mouse_filter = 2
 script = ExtResource("1_u7q41")
 
 [node name="PausedHUD" type="MarginContainer" parent="."]
+process_mode = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,11 +35,21 @@ mouse_filter = 2
 layout_mode = 2
 color = Color(0, 0, 0, 0.313726)
 
-[node name="PausedLabel" type="Label" parent="PausedHUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PausedHUD"]
+layout_mode = 2
+theme_override_constants/separation = 65
+alignment = 1
+
+[node name="PausedLabel" type="Label" parent="PausedHUD/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Paused"
 horizontal_alignment = 1
+
+[node name="UnpauseButton" type="Button" parent="PausedHUD/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Unpause"
 
 [node name="DeathHUD" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -95,4 +107,5 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 35
 text = "Score: 0"
 
+[connection signal="pressed" from="PausedHUD/VBoxContainer/UnpauseButton" to="." method="_on_unpause_button_pressed"]
 [connection signal="pressed" from="DeathHUD/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

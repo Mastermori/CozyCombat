@@ -138,10 +138,6 @@ _data = {
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_h5tho")
-speed = null
-jump_velocity = null
-max_health = null
-knockback_drag = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645782, 0)
