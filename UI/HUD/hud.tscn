@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm7j4spc2qgji"]
+[gd_scene load_steps=4 format=3 uid="uid://dm7j4spc2qgji"]
 
 [ext_resource type="Script" path="res://UI/HUD/HUD.gd" id="1_u7q41"]
+[ext_resource type="PackedScene" uid="uid://cwakwmxbvqt2n" path="res://Multiplayer/multiplayer_hud.tscn" id="2_sj6uu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fa568"]
 bg_color = Color(0.701961, 0.027451, 0.027451, 1)
@@ -11,6 +12,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
 [node name="HUD" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +23,7 @@ mouse_filter = 2
 script = ExtResource("1_u7q41")
 
 [node name="PausedHUD" type="MarginContainer" parent="."]
+process_mode = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,11 +36,21 @@ mouse_filter = 2
 layout_mode = 2
 color = Color(0, 0, 0, 0.313726)
 
-[node name="PausedLabel" type="Label" parent="PausedHUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PausedHUD"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="PausedLabel" type="Label" parent="PausedHUD/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Paused"
 horizontal_alignment = 1
+
+[node name="UnpauseButton" type="Button" parent="PausedHUD/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Unpause"
 
 [node name="DeathHUD" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -95,4 +108,19 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 35
 text = "Score: 0"
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MultiplayerHUD" parent="MarginContainer" instance=ExtResource("2_sj6uu")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[connection signal="pressed" from="PausedHUD/VBoxContainer/UnpauseButton" to="." method="_on_unpause_button_pressed"]
 [connection signal="pressed" from="DeathHUD/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

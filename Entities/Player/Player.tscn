@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dq07351a64tkg"]
+[gd_scene load_steps=13 format=3 uid="uid://dq07351a64tkg"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h5tho"]
 [ext_resource type="Script" path="res://Entities/Player/RightHand.gd" id="2_8n6x3"]
@@ -136,16 +136,22 @@ _data = {
 "punch_2": SubResource("Animation_n1mmh")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_t7nc1"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath(".:player")
+properties/2/spawn = true
+properties/2/sync = false
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_h5tho")
-speed = null
-jump_velocity = null
-max_health = null
-knockback_drag = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645782, 0)
-current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_oxtg2")
@@ -182,5 +188,8 @@ script = ExtResource("4_6ois3")
 shape = SubResource("CapsuleShape3D_oxtg2")
 
 [node name="HUD" parent="." instance=ExtResource("5_u5fou")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_t7nc1")
 
 [connection signal="health_changed" from="." to="HUD" method="update_health_display"]

@@ -6,7 +6,7 @@ signal health_changed(new_health, previous_health, max_health)
 @export var max_health: float = 20
 @export var knockback_drag: float = .1
 
-var health := max_health
+var health := max_health : set = set_health
 var last_damage_source: Node
 
 var stagger_timer: float = 0
@@ -14,7 +14,6 @@ var stagger_timer: float = 0
 func _process(delta: float) -> void:
 	if stagger_timer > 0:
 		stagger_timer -= delta
-
 
 func calculate_stagger_velocity() -> void:
 	velocity = velocity.lerp(Vector3.ZERO, knockback_drag * Engine.time_scale)
@@ -39,3 +38,8 @@ func is_staggered() -> bool:
 
 func unstagger() -> void:
 	stagger_timer = 0
+
+func set_health(value: float) -> void:
+	var previous_health = health
+	health = value
+	health_changed.emit(health, previous_health, max_health)

@@ -21,5 +21,7 @@ func spawn_enemy():
 
 
 func _on_timer_timeout() -> void:
+	if not is_multiplayer_authority():
+		return
 	start_timer()
 	spawn_enemy()

@@ -5,6 +5,14 @@ extends Entity
 @export var speed: float = 10
 @export var jump_velocity: float = 4.5
 
+# Set by the authority, synchronized on spawn.
+@export var player := 1 :
+	set(id):
+		name = "Player%s" % id
+		player = id
+		# Give authority over the player input to the appropriate peer.
+		set_authority(id)
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var look_sensitivity: float = ProjectSettings.get_setting("player/look_sensitivity")
@@ -15,9 +23,18 @@ var dead := false
 @onready var right_hand: Hand = $Hands/RightHand
 @onready var camera: Camera3D = $Camera3D
 
+@rpc
+func update_state(position, rotation, velocity):
+	self.position = position
+	self.rotation = rotation
+	self.velocity = velocity
 
 func _ready():
+	if not is_multiplayer_authority():
+		return
 	Global.player = self
+	$Camera3D.current = true
+	print("Player ready")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -30,19 +47,10 @@ func _physics_process(delta: float) -> void:
 		calculate_stagger_velocity()
 	
 	move_and_slide()
-	
-	if not dead:
-		if Input.is_action_just_pressed("ui_cancel"): 
-			if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-				$HUD.display_paused(false)
-				Engine.time_scale = 1
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			else:
-				$HUD.display_paused(true)
-				Engine.time_scale = 0
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func calculate_movement_velocity() -> void:
+	if not is_multiplayer_authority():
+		return
 	if dead:
 		return
 	# Handle Jump.
@@ -60,14 +68,16 @@ func calculate_movement_velocity() -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 
-func _input(event):
+func _unhandled_input(event):
+	if not is_multiplayer_authority():
+		return
 	if dead:
 		return
 	if not is_controlling():
 		return
 	
 	if event.is_action_pressed("punch"):
-		right_hand.punch()
+		right_hand.rpc("punch") # Call punch on all peers
 	
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * look_sensitivity * .001 * Engine.time_scale)
@@ -85,3 +95,9 @@ func die():
 
 func is_controlling() -> bool:
 	return Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
+
+func set_authority(id: int) -> void:
+	print("Setting authority to: %s" % id)
+	$MultiplayerSynchronizer.set_multiplayer_authority(id)
+	set_multiplayer_authority(id)
+#	name = "Player%s" % id

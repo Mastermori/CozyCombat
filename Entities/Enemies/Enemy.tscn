@@ -66,4 +66,6 @@ knockback_source = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251817, -0.504677)
 shape = SubResource("BoxShape3D_3s8xq")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+
 [connection signal="on_hit" from="Hitbox" to="." method="_on_hitbox_on_hit"]

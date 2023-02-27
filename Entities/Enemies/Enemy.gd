@@ -13,15 +13,20 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	
+	_pp2(delta)
+	_pp3(delta)
+
+func _pp2(delta: float) -> void:
 	if not is_staggered():
 		calculate_movement_velocity()
-		look_at(Global.player.global_position)
+		var player_pos = Global.player.global_position
+		player_pos.y = global_position.y
+		look_at(player_pos)
 	else:
 		calculate_stagger_velocity()
-	
-	move_and_slide()
 
+func _pp3(delta: float) -> void:
+	move_and_slide()
 
 func calculate_movement_velocity() -> void:
 	var desired_dir := global_position.direction_to(Global.player.global_position)

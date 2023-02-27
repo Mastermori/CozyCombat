@@ -8,6 +8,7 @@ var weapon: Weapon
 func _ready() -> void:
 	weapon = $ItemContainer.get_child(0)
 
+@rpc("call_local")
 func punch():
 	animation_player.play("punch_2")
 
