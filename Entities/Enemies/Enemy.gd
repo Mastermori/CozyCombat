@@ -16,7 +16,9 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_staggered():
 		calculate_movement_velocity()
-		look_at(Global.player.global_position)
+		var player_pos = Global.player.global_position
+		player_pos.y = global_position.y
+		look_at(player_pos)
 	else:
 		calculate_stagger_velocity()
 	
